@@ -25,15 +25,10 @@ input = sys.stdin.readline
 N, M, x, y, K = map(int, input().split())
 Map = [list(map(int, input().split())) for _ in range(N)]
 Commands = list(map(int, input().split()))
-# N = 4
-# M = 2
-# x = 0
-# y = 0
-# K = 8
-# Map = [[0, 2], [3, 4], [5, 6], [7, 8]]
-# Commands = [4, 4, 4, 1, 3, 3, 3, 2]
+
 
 nD = [[0]*2 for _ in range(3)] # now Dice
+# [0][0]: front, [0][1]: back, [1][0]: east, [1][1]: west, [2][0]: north, [2][1]: south
 
 for c in Commands:
     x, y, flag = map_check(x, y, c)
