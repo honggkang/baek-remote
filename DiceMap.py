@@ -21,6 +21,7 @@ def map_check(x, y, c):
     else:
         return x, y, False
 
+
 input = sys.stdin.readline
 N, M, x, y, K = map(int, input().split())
 Map = [list(map(int, input().split())) for _ in range(N)]
