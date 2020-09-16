@@ -4,7 +4,7 @@ import sys
 
 
 input = sys.stdin.readline
-inf = 1e5
+inf = 1e10
 
 N = int(input())  # of cities
 M = int(input())  # of buses
@@ -20,19 +20,22 @@ visited[interIndex] = True
 
 while sum(visited) != N:
     temp = []
-    for i in range(N):
+    for i in range(M):
         if costInfo[i][0] == interIndex:
             dis[costInfo[i][1]] = min(dis[costInfo[i][1]], dis[interIndex] + costInfo[i][2])
-            temp.append(dis[costInfo[i][1]])
-    min_temp = min(temp)
 
-    temp_dis = dis.copy()
-    interIndex = temp_dis.index(min_temp)
-    while visited[interIndex]:
-        temp_dis.pop(interIndex)
-        interIndex = temp_dis.index(min_temp)
+    min_temp = 1e10
+    interIndex = False
+    for j in range(1, N+1):  # 1~N
+        if not visited[j] and min_temp > dis[j]:
+            min_temp = dis[j]
+            interIndex = j
+
+    if not interIndex:
+        break
     visited[interIndex] = True
 
 
 
-print(dis)
+
+print(dis[D])
