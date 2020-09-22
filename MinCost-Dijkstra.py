@@ -18,11 +18,22 @@ interIndex = S
 dis[interIndex] = 0
 visited[interIndex] = True
 
+indexInfo = []
+for _ in range(N):
+    indexInfo.append([])
+
+for i in range(M):
+    for j in range(N):
+        if costInfo[i][0] == j+1:
+            indexInfo[j].append(i)
+
+# [[0, 1, 2, 3], [4], [5, 6], [7], [], [], [], []]
+
 while sum(visited) != N:
     temp = []
-    for i in range(M):
-        if costInfo[i][0] == interIndex:
-            dis[costInfo[i][1]] = min(dis[costInfo[i][1]], dis[interIndex] + costInfo[i][2])
+
+    for i in indexInfo[interIndex-1]:
+        dis[costInfo[i][1]] = min(dis[costInfo[i][1]], dis[interIndex] + costInfo[i][2])
 
     min_temp = 1e10
     interIndex = False
@@ -34,8 +45,6 @@ while sum(visited) != N:
     if not interIndex:
         break
     visited[interIndex] = True
-
-
 
 
 print(dis[D])
