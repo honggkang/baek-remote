@@ -1,13 +1,14 @@
 # BOJ 3761
 
-import sys
+# import sys
 
-input = sys.stdin.readline
+# input = sys.stdin.readline
 tn = int(input())
 
 ans_fName = []
 ans_mName = []
 ans_fC = []
+
 
 def matching(fpl, fq):
     l = len(fq)
@@ -69,12 +70,16 @@ for testi in range(tn):
                     fR[fqi] = r
                     fC[fqi] = c
 
-    ans_fName.append(fName)
-    ans_mName.append(mName)
-    ans_fC.append(fC)
-
-
-for ti in range(tn):
     for _ in range(n):
-        print(ans_mName[ti][_], ans_fName[ti][ans_fC[ti].index(mName[_])])
-    print('\n')
+        print(mName[_], fName[fC.index(mName[_])])
+    print('')
+
+#     ans_fName.append(fName)
+#     ans_mName.append(mName)
+#     ans_fC.append(fC)
+#
+#
+# for ti in range(tn):
+#     for _ in range(n):
+#         print(ans_mName[ti][_], ans_fName[ti][ans_fC[ti].index(ans_mName[ti][_])])
+#     print('')
