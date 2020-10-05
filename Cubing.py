@@ -1,7 +1,6 @@
 # BOJ 5373
 
 import sys
-import copy as cp
 
 input = sys.stdin.readline
 
@@ -47,36 +46,44 @@ for _ in range(tn):
     n = int(input())  # input
     com = list(input().split())
     for i in range(n):
-        info = cp.deepcopy(new_info)
+        info = {'U': [['w', 'w', 'w'], ['w', 'w', 'w'], ['w', 'w', 'w']],
+                'D': [['y', 'y', 'y'], ['y', 'y', 'y'], ['y', 'y', 'y']], \
+                'F': [['r', 'r', 'r'], ['r', 'r', 'r'], ['r', 'r', 'r']],
+                'B': [['o', 'o', 'o'], ['o', 'o', 'o'], ['o', 'o', 'o']], \
+                'L': [['g', 'g', 'g'], ['g', 'g', 'g'], ['g', 'g', 'g']],
+                'R': [['b', 'b', 'b'], ['b', 'b', 'b'], ['b', 'b', 'b']]}
+        for key in new_info:
+            for j in range(3):
+                info[key][j] = new_info[key][j].copy()
         f = com[i][0]  # face
         dir = com[i][1]  # direction
         new_info[f] = rotate(info[f], dir)
         if f == 'U':
             # CCW
             if dir == '-':
-                new_info['L'][2] = cp.deepcopy(info['B'][2])
-                new_info['R'][2] = cp.deepcopy(info['F'][2])
-                new_info['F'][2] = cp.deepcopy(info['L'][2])
-                new_info['B'][2] = cp.deepcopy(info['R'][2])
+                new_info['L'][2] = info['B'][2].copy()
+                new_info['R'][2] = info['F'][2].copy()
+                new_info['F'][2] = info['L'][2].copy()
+                new_info['B'][2] = info['R'][2].copy()
             # CW
             else:
-                new_info['L'][2] = cp.deepcopy(info['F'][2])
-                new_info['R'][2] = cp.deepcopy(info['B'][2])
-                new_info['F'][2] = cp.deepcopy(info['R'][2])
-                new_info['B'][2] = cp.deepcopy(info['L'][2])
+                new_info['L'][2] = info['F'][2].copy()
+                new_info['R'][2] = info['B'][2].copy()
+                new_info['F'][2] = info['R'][2].copy()
+                new_info['B'][2] = info['L'][2].copy()
         elif f == 'D':
             # CCW
             if dir == '-':
-                new_info['L'][0] = cp.deepcopy(info['F'][0])
-                new_info['R'][0] = cp.deepcopy(info['B'][0])
-                new_info['F'][0] = cp.deepcopy(info['R'][0])
-                new_info['B'][0] = cp.deepcopy(info['L'][0])
+                new_info['L'][0] = info['F'][0].copy()
+                new_info['R'][0] = info['B'][0].copy()
+                new_info['F'][0] = info['R'][0].copy()
+                new_info['B'][0] = info['L'][0].copy()
             # CW
             else:
-                new_info['L'][0] = cp.deepcopy(info['B'][0])
-                new_info['R'][0] = cp.deepcopy(info['F'][0])
-                new_info['F'][0] = cp.deepcopy(info['L'][0])
-                new_info['B'][0] = cp.deepcopy(info['R'][0])
+                new_info['L'][0] = info['B'][0].copy()
+                new_info['R'][0] = info['F'][0].copy()
+                new_info['F'][0] = info['L'][0].copy()
+                new_info['B'][0] = info['R'][0].copy()
         elif f == 'F':
             # CCW
             if dir == '-':
@@ -131,7 +138,6 @@ for _ in range(tn):
     for ii in range(3):
         pi = 2-ii
         print(*new_info['U'][pi], sep='')
-    # print(new_info)
 
 
 
