@@ -7,6 +7,7 @@ n = int(input())
 S = [list(map(int, input().split('.'))) for _ in range(n)]  # group of linked nodes
 
 if n != 1:
+    l = 0
     for g in range(4):  # IP 구분 (4-byte)
         tmp = []
         for u in range(n):  # users (hosts)
@@ -15,9 +16,10 @@ if n != 1:
         mm = min(tmp)
         MM = max(tmp)
         if mm != MM:
+            l = len(bin(MM ^ mm)) - 2
             break
 
-    l = len(bin(MM^mm)) - 2
+
 
     L = 2**l
     # aa = MM - L + 1
